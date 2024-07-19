@@ -27,12 +27,3 @@ def payload_ing():
         ingredient_id.append(r_ing.json()['data'][i]['_id'])
     payload_ing = {"ingredients": [random.choice(ingredient_id), random.choice(ingredient_id)]}
     return payload_ing
-
-
-@pytest.fixture(scope='function')
-def payload_mod():
-    payload_mod = {
-        "email": "test_mod@test.org",
-        "name": "test_mod"
-    }
-    return payload_mod

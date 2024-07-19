@@ -11,10 +11,10 @@ class TestCreatOrder:
     @allure.title('Создание заказа с авторизацией')
     def test_with_authorization(self, payload, payload_ing):
         r_creat_user = requests.post(url + register, data=payload)
-        r_login = requests.post(url + login, data=payload, timeout=10)
+        requests.post(url + login, data=payload, timeout=10)
         token = r_creat_user.json()['accessToken']
         r_creat_order = requests.post(url + orders, data=payload_ing, headers={'Authorization': token})
-        r_del = requests.delete(url + user, headers={'Authorization': token})
+        requests.delete(url + user, headers={'Authorization': token})
         assert r_creat_order.status_code == 200 and r_creat_order.json()['success'] == True
 
     @allure.title('Создание заказа без авторизации')

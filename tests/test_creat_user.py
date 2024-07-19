@@ -20,7 +20,7 @@ class TestCreatUser:
         r = requests.post(url+register, data=payload)
         r_double = requests.post(url+register, data=payload)
         token = r.json()['accessToken']
-        r_del = requests.delete(url + user, headers={'Authorization': token})
+        requests.delete(url + user, headers={'Authorization': token})
         assert r_double.status_code == 403 and r_double.json()['message'] == "User already exists"
 
     @allure.title('Cоздание пользователя с незаполненным полем')
